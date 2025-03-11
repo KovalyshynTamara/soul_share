@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: soul_share_user
-  password: pass_7610
+  username: <%= ENV['SOUL_SHARE_DATABASE_USER'] %>
+  password: <%= ENV['SOUL_SHARE_DATABASE_PASSWORD'] %>
   host: localhost
 
 development:
