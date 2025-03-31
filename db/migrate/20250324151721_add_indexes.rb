@@ -10,8 +10,8 @@ class AddIndexes < ActiveRecord::Migration[8.0]
     add_index :comments, :event_id
     add_index :comment_moderations, :comment_id
     add_index :comment_moderations, :moderator_id
-    add_index :favorites, [:user_id, :song_id], unique: true
-    add_index :ratings, [:user_id, :song_id], unique: true
-    add_index :event_participants, [:event_id, :user_id], unique: true
+    add_index :favorites, [ :user_id, :song_id ], unique: true
+    add_index :ratings, [ :user_id, :song_id ], unique: true
+    add_index :event_participants, [ :event_id, :user_id ], unique: true
   end
 end
