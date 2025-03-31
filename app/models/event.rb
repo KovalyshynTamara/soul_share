@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :created_by, class_name: 'User', required: true
+  belongs_to :created_by, class_name: "User", required: true
   belongs_to :location, optional: true
   has_many :event_participants
   has_many :event_songs
