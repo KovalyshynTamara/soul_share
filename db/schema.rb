@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_24_162918) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_31_154502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -72,7 +72,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_162918) do
     t.integer "location_id"
     t.string "image"
     t.string "status"
-    t.integer "created_by"
     t.integer "current_song_id"
     t.integer "current_performer_id"
     t.string "mode"
@@ -80,7 +79,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_162918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "created_by_id", null: false
-    t.index ["created_by"], name: "index_events_on_created_by"
     t.index ["created_by_id"], name: "index_events_on_created_by_id"
     t.index ["location_id"], name: "index_events_on_location_id"
   end
@@ -105,8 +103,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_162918) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "song_id"
+    t.integer "user_id", null: false
+    t.integer "song_id", null: false
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -132,6 +130,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_162918) do
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "comment_moderations", "comments"
@@ -145,7 +145,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_162918) do
   add_foreign_key "event_songs", "events"
   add_foreign_key "event_songs", "songs"
   add_foreign_key "events", "locations"
-  add_foreign_key "events", "users", column: "created_by"
   add_foreign_key "events", "users", column: "created_by_id"
   add_foreign_key "favorites", "songs"
   add_foreign_key "favorites", "users"

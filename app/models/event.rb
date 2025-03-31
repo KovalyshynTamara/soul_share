@@ -5,4 +5,6 @@ class Event < ApplicationRecord
   has_many :event_songs
   has_many :songs, through: :event_songs
   has_many :comments, through: :event_participants
+  validates :created_by, presence: true
+  validates :title, presence: true, length: { minimum: 3, maximum: 100 }
 end
