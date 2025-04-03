@@ -1,0 +1,16 @@
+<div>
+<h1 class="mt-10 text-4xl font-bold text-center text-blue-600">Welcome to Soul Share!</h1>
+<p class="mt-4 text-lg text-center text-gray-600">This is the homepage of your music event platform.</p>
+
+<% if user_signed_in? %>
+  <div class="mt-6 text-center">
+    <p class="text-xl font-medium text-gray-800">Hello, <%= current_user.email %>!</p>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'mt-4 inline-block px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600' %>
+  </div>
+<% else %>
+  <div class="mt-6 text-center">
+    <%= link_to 'Sign Up', new_user_registration_path, class: 'px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600' %> | 
+    <%= link_to 'Login', new_user_session_path, class: 'px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600' %>
+  </div>
+<% end %>
+</div>
