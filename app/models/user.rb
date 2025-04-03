@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :ratings
   has_many :event_participants
   has_many :comments, through: :event_participants
+
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
 end
