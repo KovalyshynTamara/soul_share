@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  it { should belong_to(:event) }
-  it { should belong_to(:event_participant) }
-  it { should have_one(:user).through(:event_participant) }
-  it { should validate_presence_of(:event_id) }
-  it { should validate_presence_of(:event_participant_id) }
+  it { is_expected.to belong_to(:event) }
+  it { is_expected.to belong_to(:event_participant) }
+  it { is_expected.to have_one(:user).through(:event_participant) }
+
+  it { is_expected.to validate_presence_of(:event_id) }
+  it { is_expected.to validate_presence_of(:event_participant_id) }
 end
