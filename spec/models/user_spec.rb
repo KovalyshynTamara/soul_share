@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
-  
+
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_uniqueness_of(:name) }
   it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(20) }
