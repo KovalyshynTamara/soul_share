@@ -8,8 +8,5 @@ class CreateCommentModerations < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :comment_moderations, :comment_id
-    add_index :comment_moderations, :moderator_id
   end
 end
