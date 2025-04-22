@@ -16,10 +16,5 @@ class CreateEvents < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :events, :created_by
-    add_index :events, :location_id
-    add_index :events, :current_song_id
-    add_index :events, :current_performer_id
   end
 end

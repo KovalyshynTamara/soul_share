@@ -10,9 +10,5 @@ class CreateEventSongs < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :event_songs, :event_id
-    add_index :event_songs, :song_id
-    add_index :event_songs, :event_participant_id
   end
 end
