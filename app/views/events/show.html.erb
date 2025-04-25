@@ -1,0 +1,38 @@
+<div class="container max-w-3xl mx-auto p-10 bg-white rounded-xl shadow">
+  <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @event.title %></h1>
+  <p class="text-gray-600 mb-4"><%= @event.description %></p>
+
+<!-- Локація і час -->
+  <div class="title">Location:
+    <span class="text-gray-700 font-normal">
+      <% if @event.location.present? %>
+        <%= [@event.location.name, @event.location.address, @event.location.city].compact.join(", ") %>
+        <% else %>
+          -
+      <% end %>
+    </span>
+  </div>
+  <div class="title">Start:
+    <span class="text-gray-700 font-normal"><%= @event.start_at&.strftime("%d.%m.%Y %H:%M") || "Not specified" %></span>
+  </div>
+  <div class="title">End:
+    <span class="text-gray-700 font-normal"><%= @event.end_at&.strftime("%d.%m.%Y %H:%M") || "Not specified" %></span>
+  </div>
+
+<!-- Статус івенту: open або closed -->
+  <% if @event.start_at.present? %>
+    <div class="title">Status:
+      <% if @event.start_at.to_date > Date.today %>
+        <span class="badge bg-green-600">Open</span>
+      <% else %>
+        <span class="badge bg-red-500">Closed</span>
+      <% end %>
+    </div>
+  <% end %>
+
+<!-- Кнопки редагування та повернення -->
+  <div class="flex gap-4 pt-4">
+    <%= link_to "Edit", edit_event_path(@event), class: "btn btn__primary" %>
+    <%= link_to "Back", events_path, class: "btn btn__pink" %>
+  </div>
+</div>

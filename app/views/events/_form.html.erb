@@ -1,0 +1,32 @@
+<div class="container flex justify-center">
+  <div class="form-container">
+    <%= form_with(model: event, local: true, class: "space-y-4") do |f| %>
+      <div>
+        <%= f.label :title, class: "form__label" %>
+        <%= f.text_field :title, class: "form__input" %>
+      </div>
+
+      <div>
+        <%= f.label :description, class: "form__label" %>
+        <%= f.text_area :description, class: "form__input" %>
+      </div>
+
+      <div>
+        <%= f.label :location_id, "Location", class: "form__label" %>
+        <%= f.collection_select :location_id, Location.all, :id, :name, { prompt: "Select a location" }, class: "form__input" %>
+      </div>
+
+      <div>
+        <%= f.label :start_at, "Start time", class: "form__label"  %>
+        <%= f.datetime_select :start_at, class: "w-full p-2 border rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :end_at, "End time", class: "form__label" %>
+        <%= f.datetime_select :end_at, class: "w-full p-2 border rounded" %>
+      </div>
+
+      <%= f.submit class: "btn btn__primary" %>
+    <% end %>
+  </div>
+</div>
