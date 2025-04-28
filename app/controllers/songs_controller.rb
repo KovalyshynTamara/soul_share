@@ -1,12 +1,12 @@
 class SongsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
-  before_action :set_song, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @songs = Song.all
+    @songs = collection
   end
 
   def show
+    @song = resource
   end
 
   def new
@@ -25,9 +25,11 @@ class SongsController < ApplicationController
   end
 
   def edit
+    @song = resource
   end
 
   def update
+    @song = resource
     if @song.update(song_params)
       redirect_to song_path(@song), notice: "Song updated successfully!"
     else
@@ -36,15 +38,19 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    @song = Song.find(params[:id])
+    @song = resource
     @song.destroy
     redirect_to songs_path, notice: "Song deleted successfully!"
   end
 
   private
 
-  def set_song
-    @song = Song.find(params[:id])
+  def collection
+    Song.all
+  end
+
+  def resource
+    Song.find(params[:id])
   end
 
   def song_params

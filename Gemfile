@@ -8,6 +8,7 @@ gem "propshaft"
 gem "importmap-rails"
 gem "hotwire-rails"
 gem "pg"
+gem "inline_svg"
 gem "dotenv-rails", groups: [ :development, :test ]
 
 # Use the Puma web server [https://github.com/puma/puma]
