@@ -9,6 +9,7 @@ gem "importmap-rails"
 gem "hotwire-rails"
 gem "pg"
 gem "inline_svg"
+gem "factory_bot_rails"
 gem "dotenv-rails", groups: [ :development, :test ]
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -55,4 +56,5 @@ end
 group :test do
   gem "shoulda-matchers", "~> 5.0"
   gem "simplecov", require: false
+  gem "rails-controller-testing"
 end
