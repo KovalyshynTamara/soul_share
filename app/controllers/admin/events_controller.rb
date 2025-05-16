@@ -16,7 +16,7 @@ class Admin::EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      redirect_to admin_events_path, notice: 'Event created successfully'
+      redirect_to admin_events_path, notice: "Event created successfully"
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::EventsController < ApplicationController
   def update
     @event = resource
     if @event.update(event_params)
-      redirect_to admin_events_path, notice: 'Event updated successfully'
+      redirect_to admin_events_path, notice: "Event updated successfully"
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class Admin::EventsController < ApplicationController
   def destroy
     @event = resource
     @event.destroy
-    redirect_to admin_events_path, notice: 'Event deleted successfully'
+    redirect_to admin_events_path, notice: "Event deleted successfully"
   end
 
   private

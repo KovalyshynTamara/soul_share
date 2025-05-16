@@ -18,5 +18,4 @@ class EventSongsController < ApplicationController
   def resource
     Event.find(params[:event_id])
   end
-
 end

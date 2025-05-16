@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :events do
-    resource :event_participant, only: [:create, :destroy]
-    resources :event_songs, only: [:create, :destroy]
+    resource :event_participant, only: [ :create, :destroy ]
+    resources :event_songs, only: [ :create, :destroy ]
   end
 
   resources :songs
@@ -11,13 +11,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users do
       member do
-        get 'impersonate'
+        get "impersonate"
       end
     end
     resources :events
   end
 
-get 'stop_impersonating', to: 'admin/users#stop_impersonating', as: :stop_impersonating
+get "stop_impersonating", to: "admin/users#stop_impersonating", as: :stop_impersonating
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500. змінити пароль через фор

@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :require_admin, except: [:stop_impersonating]
+  before_action :require_admin, except: [ :stop_impersonating ]
 
   def index
     @users = collection
