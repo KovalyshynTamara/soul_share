@@ -1,0 +1,23 @@
+<table class="table-auto w-full border border-gray-300 text-left">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="border border-gray-300 p-4">Name</th>
+      <th class="border border-gray-300 p-4">Email</th>
+      <th class="border border-gray-300 p-4">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class="hover:bg-gray-50">
+        <td class="border border-gray-300 p-4"><%= user.name %></td>
+        <td class="border border-gray-300 p-4"><%= user.email %></td>
+        <td class="border border-gray-300 p-4">
+          <%= link_to 'Impersonate', impersonate_admin_user_path(user), class: 'btn btn__primary' %>
+          <% if session[:impersonated_user_id] == user.id %>
+          <%= link_to 'Stop Impersonating', stop_impersonating_admin_user_path(user), method: :delete, class: 'btn btn__pink ml-2' %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
