@@ -11,11 +11,13 @@
       <tr class="hover:bg-gray-50">
         <td class="border border-gray-300 p-4"><%= user.name %></td>
         <td class="border border-gray-300 p-4"><%= user.email %></td>
-        <td class="border border-gray-300 p-4">
-          <%= link_to 'Impersonate', impersonate_admin_user_path(user), class: 'btn btn__primary' %>
+        <td class="border border-gray-300 p-4 space-x-2">
+          <%= link_to 'View', admin_user_path(user), class: 'btn btn__blue' %>
+          <%= link_to 'Edit', edit_admin_user_path(user), class: 'btn btn__primary' %>
+          <%= link_to 'Impersonate', impersonate_admin_user_path(user), class: 'btn btn__pink' %>
           <% if session[:impersonated_user_id] == user.id %>
-          <%= link_to 'Stop Impersonating', stop_impersonating_admin_user_path(user), method: :delete, class: 'btn btn__pink ml-2' %>
-        <% end %>
+            <%= link_to 'Stop Impersonating', stop_impersonating_admin_user_path(user), method: :delete, class: 'btn btn__pink ml-2' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
