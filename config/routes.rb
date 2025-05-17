@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :event_songs, only: [ :create, :destroy ]
   end
 
-  resources :songs
+  resources :songs do
+    resources :ratings, only: [ :create ], shallow: true
+  end
 
   namespace :admin do
     resources :users do
