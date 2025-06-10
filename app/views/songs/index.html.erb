@@ -1,4 +1,14 @@
 <div class="container mb-20">
+    <div class="mb-6">
+    <%= form_with url: songs_path, method: :get, local: true, class: "flex items-center gap-4" do %>
+      <%= text_field_tag :query, params[:query], placeholder: "Search songs...", class: "search__input" %>
+      <%= button_tag "Search", type: "submit", class: "btn btn__blue" %>
+      <% if params[:query].present? %>
+        <%= link_to "Clear", songs_path, class: "btn btn__secondary" %>
+      <% end %>
+    <% end %>
+  </div>
+
   <h1 class="text-2xl font-bold mb-4">All Songs</h1>
 
    <div class="mb-6">
