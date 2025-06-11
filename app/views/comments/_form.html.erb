@@ -1,0 +1,19 @@
+<%= form_with(model: [event, comment], data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do |f| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(comment.errors.count, "error") %></h2>
+      <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.text_area :content, rows: 3, placeholder: "Add comment...", class: "form__input" %>
+  </div>
+  <div>
+    <%= f.submit "Publish comment", class: "btn btn__blue" %>
+  </div>
+<% end %>

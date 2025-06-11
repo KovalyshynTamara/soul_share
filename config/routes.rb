@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events do
     resource :event_participant, only: [ :create, :destroy ]
     resources :event_songs, only: [ :create, :destroy ]
+    resources :comments, only: [ :create ]
   end
 
   resources :songs do
