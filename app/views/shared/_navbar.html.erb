@@ -9,8 +9,13 @@
       <div class="space-x-6 text-gray-700 font-medium">
         <%= link_to "Events", events_path, class: "hover:text-indigo-600 transition" %>
         <%= link_to "Songs", songs_path, class: "hover:text-indigo-600 transition" %>
-        <%= link_to "Admin", events_path, class: "hover:text-indigo-600 transition" %>
+        <% if current_user&.admin? %>
+          <%= link_to "Admin", admin_users_path, class: "hover:text-indigo-600 transition" %>
+        <% end %>
       </div>
+      <% if session[:impersonated_user_id] %>
+        <%= link_to 'Stop Impersonating', stop_impersonating_path, method: :delete, class: 'btn btn__pink' %>
+      <% end %>
       <!-- Кнопка логіну / профілю -->
       <div class="flex gap-2">
         <% if user_signed_in? %>

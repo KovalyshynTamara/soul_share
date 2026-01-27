@@ -1,4 +1,4 @@
-<div class="container max-w-3xl mx-auto p-10 bg-white rounded-xl shadow">
+<div class="container max-w-3xl mx-auto p-10 bg-white rounded-xl shadow mb-24">
   <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @event.title %></h1>
   <p class="text-gray-600 mb-4"><%= @event.description %></p>
 
@@ -30,10 +30,54 @@
     </div>
   <% end %>
 
-<!-- Кнопки редагування, видалення та повернення -->
-  <div class="flex gap-4 pt-4">
+<!-- Кнопки редагування, видалення, повернення та приєднання до івенту -->
+  <div class="flex gap-4 pt-4 mb-4">
     <%= link_to "Edit", edit_event_path(@event), class: "btn btn__primary" %>
     <%= button_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?"  }, class: "btn btn__pink" %>
     <%= link_to "Back", events_path, class: "btn btn__secondary" %>
+
+    <%= render 'shared/buttons' %>
   </div>
+
+  <!-- song list -->
+  <div class="mb-4">
+    <h3 class="text-lg font-bold mb-2">Songs in this event:</h3>
+    <ul>
+      <% @event.songs.each do |song| %>
+        <li class="flex items-center justify-between p-2 border">
+          <div class="flex items-center gap-4">
+          <%= inline_svg "icons/song.svg", class: "h-6 w-6" %>
+          <%= link_to song.title, song_path(song), class: "text-blue-500 hover:text-blue-700" %> 
+          </div>
+          <%= button_to "Remove", event_event_song_path(@event, song), method: :delete, data: { confirm: "Are you sure?" }, class: "btn__pink " %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-lg font-bold mb-2">Add song to event:</h4>      
+      <%= form_with url: event_event_songs_path(@event), method: :post, local: true do |f| %>
+        <div class="flex items-center justify-between"> 
+          <%= select_tag :song_id, options_from_collection_for_select(Song.all, :id, :title), class: "form__input w-1/2" %>
+          <%= f.submit "Add", class: "btn btn__secondary mb-4" %>
+        </div>
+      <% end %>    
+  </div>
+
+  <!-- учасники -->
+  <% if current_user&.admin? %>
+    <h3 class="text-lg font-bold mb-2">Participants:</h3>
+    <ul class="mb-4">
+      <% @event.event_participants.includes(:user).each do |participant| %>
+        <li class="mb-2 flex items-center gap-4">
+          <%= image_tag("profile.png", alt: "Profile", class: "w-5 h-5") %>
+          <%= participant.user.name %> 
+          <span class="text-gray-400">
+            (<%= participant.user.email %>)
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
 </div>

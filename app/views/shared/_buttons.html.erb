@@ -1,0 +1,13 @@
+<% if current_user %>
+  <% if current_user.event_participants.exists?(event_id: @event.id) %>
+    <%= button_to 'Leave Event', event_event_participant_path(@event),
+        method: :delete,
+        class: "btn btn__blue",
+        form: { data: { turbo: false } } %>
+  <% else %>
+    <%= button_to 'Join Event', event_event_participant_path(@event),
+        method: :post,
+        class: "btn btn__blue",
+        form: { data: { turbo: false } } %>
+  <% end %>
+<% end %>
