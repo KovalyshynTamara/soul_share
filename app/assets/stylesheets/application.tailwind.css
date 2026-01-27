@@ -4,16 +4,8 @@
 
 
 @layer components {
-  .logout-btn {
-    @apply inline-block px-6 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-600;
-  }
-
-  .sign-up-btn {
-    @apply px-6 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 mr-6;
-  }
-
-  .login-btn {
-    @apply px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600;
+  .btn__logout {
+    @apply inline-block px-6 py-2 text-white bg-pink-500 rounded-lg hover:bg-pink-600;
   }
 
   .greeting {
@@ -21,7 +13,7 @@
   }
 
   .welcome-header{
-    @apply mt-10 text-4xl font-bold text-center text-blue-600;
+    @apply mt-10 text-4xl font-bold text-center text-violet-600;
   }
 
   .flash-msg-wrap {
@@ -43,5 +35,64 @@
   .warning {
     @apply text-yellow-700 bg-yellow-100 border-yellow-400;
   }
+  .header {
+    @apply mb-4 text-4xl font-bold text-center text-violet-600;
+  }
+  .second__header {
+    @apply mb-4 text-2xl font-bold text-violet-600;
+  }
+  .form-container{
+    @apply w-2/5 bg-sky-50 rounded-xl px-5 py-10;
+  }
+    
+  .form__label {
+    @apply block font-medium text-violet-900;
+  }
+  .form__input {
+    @apply block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600 mb-3;
+  }
+  .form__link {
+    @apply block font-medium text-lime-500;
+  }
+  .form__link:hover {
+    @apply  text-violet-600;
+  }
+  .checkbox__wrap {
+    @apply flex justify-start gap-1 items-center mb-4;
+  }
 
+  .form__checkbox {
+    @apply h-4 w-4 rounded border-gray-300 text-violet-700 focus:ring-2 focus:ring-violet-600 mr-3;
+  }
+  .form__hint {
+    @apply  text-gray-500;
+  }
+  .btn {
+    @apply rounded-md leading-normal px-7 py-2 text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer
+  }
+  
+  .btn__primary {
+    @apply bg-violet-700 text-white hover:bg-violet-500 focus-visible:outline-violet-400
+  }
+
+  .btn__secondary {
+    @apply text-white bg-green-500 rounded-lg hover:bg-green-600 mr-4;
+  }
+  
+  .btn__pink {
+    @apply bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600;
+  }
+  
+  .profile__link {
+    @apply inline-block px-6 py-2 hover:text-violet-700;
+  }
+  .badge {
+    @apply inline-block text-white py-1 px-3 rounded-full text-sm;
+  }
+  .title {
+    @apply mb-2 font-bold;
+  }
+  .custom-height {
+    height: fit-content;
+  }
 }

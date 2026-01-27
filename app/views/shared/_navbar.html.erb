@@ -1,0 +1,32 @@
+<header class="fixed w-full top-0 z-50">
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Логотип -->
+      <div class="text-3xl font-bold text-violet-600">
+        <%= link_to "SoulShare", root_path, class: "hover:text-indigo-800" %>
+      </div>
+      <!-- Навігація -->
+      <div class="space-x-6 text-gray-700 font-medium">
+        <%= link_to "Events", events_path, class: "hover:text-indigo-600 transition" %>
+        <%= link_to "Songs", songs_path, class: "hover:text-indigo-600 transition" %>
+        <%= link_to "Admin", events_path, class: "hover:text-indigo-600 transition" %>
+      </div>
+      <!-- Кнопка логіну / профілю -->
+      <div class="flex gap-2">
+        <% if user_signed_in? %>
+          <%= link_to edit_user_registration_path, class: "profile__link flex items-center space-x-2" do %>
+            <%= image_tag("profile.png", alt: "Profile", class: "w-5 h-5") %>
+            <span><%= current_user.name || "Profile" %></span>
+          <% end %>
+
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn__logout" %>
+        <% else %>
+        <div class="flex gap-2">
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn__secondary' %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn__primary" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</header> 

@@ -1,0 +1,55 @@
+<div class="container flex justify-evenly">
+<div class="form-container">
+  <h2 class="text-2xl font-bold text-violet-700">Edit <%= resource_name.to_s.humanize %></h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field mb-4">
+      <%= f.label :name, class: "form__label" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form__input" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :email, class: "form__label" %>
+      <%= f.email_field :email, class: "form__input", autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password, class: "form__label" %> <div class="form__hint">leave blank if you don't want to change it</div>
+      <%= f.password_field :password, class: "form__input", autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <div class="form__hint"><%= @minimum_password_length %> characters minimum</div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: "form__label" %>
+      <%= f.password_field :password_confirmation, class: "form__input", autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password, class: "form__label"  %>
+      <div class="form__hint">we need your current password to confirm your changes</div>
+      <%= f.password_field :current_password, class: "form__input", autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", class: "btn btn__primary"  %>
+    </div>
+  <% end %>
+</div>
+<div class="bg-white px-20 py-10 rounded-lg custom-height">
+  <h3 class="text-2xl font-bold text-violet-700 mb-4">Cancel my account</h3>
+
+  <div class="mb-4 text-xl font-semibold">Unhappy?</div>
+  <div class="flex">
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn__secondary" %>
+
+    <%= link_to "Back", :back, class: "btn btn__pink" %>
+  </div>
+</div>
+
