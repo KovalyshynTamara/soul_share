@@ -79,5 +79,18 @@
       <% end %>
     </ul>
   <% end %>
+<h4 class="text-lg font-bold mb-2">Comments</h4>
 
+<div id="comments">
+  <turbo-frame id="comments_list">
+    <%= render @event.comments %>
+  </turbo-frame>
+</div>
+
+<div id="comment_form_container">
+  <%= render 'comments/form', event: @event, comment: @event.comments.build %>
+</div>
+
+<div id="comment_errors"></div>
+  
 </div>

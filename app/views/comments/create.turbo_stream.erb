@@ -1,0 +1,26 @@
+<% if @comment.persisted? %>
+  <%= turbo_stream.append "comments" do %>
+    <%= render @comment %> 
+  <% end %>
+
+  <%= turbo_stream.replace "comment_form_container" do %>
+    <%= render partial: "comments/form", locals: { event: @event, comment: @event.comments.build } %>
+  <% end %>
+
+  <%= turbo_stream.update "comment_errors", "" %>
+
+<% else %>
+
+  <%= turbo_stream.replace "comment_form_container" do %>
+    <%= render partial: "comments/form", locals: { event: @event, comment: @comment } %>
+  <% end %>
+  <%= turbo_stream.update "comment_errors" do %>
+    <div class="alert alert-danger mt-3">
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
