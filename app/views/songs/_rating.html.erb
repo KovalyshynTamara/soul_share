@@ -1,0 +1,19 @@
+<%= form_with url: song_ratings_path(song), method: :post, data: { controller: "rating", turbo_stream: true }, html: { id: "rating_form_#{song.id}" } do %>
+
+  <div class="flex justify-between">
+    <div class="flex gap-2">
+      <%= inline_svg "icons/star.svg", class: "h-6 w-6 fill-yellow-300 text-gray-600" %>
+      <%= song.average_rating.present? ? "#{number_with_precision(song.average_rating, precision: 1)}/5" : content_tag(:span, "Ще немає оцінок", class: "text-gray-400 italic") %>
+    </div>
+    <div>
+      <% current_rating = song.ratings.find_by(user: current_user)&.rating.to_i %>
+      <% 1.upto(5) do |i| %>
+        <% star_class = i <= current_rating ? "text-yellow-500" : "text-gray-500" %>
+        <%= button_tag type: :submit, name: "rating", value: i,
+            class: "text-xl #{star_class}" do %>
+            <%= inline_svg "icons/star.svg", class: "h-5 w-5 hover:fill-current hover:text-yellow-500" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
