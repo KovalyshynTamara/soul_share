@@ -2,7 +2,17 @@ class SongsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
 
   def index
-    @songs = collection
+    if params[:query].present?
+      search_results = SongIndex.query(multi_match: {
+        query: params[:query],
+        fields: %w[title author genre lyrics]
+      })
+
+      song_ids = search_results.map(&:id)
+      @songs = Song.where(id: song_ids)
+    else
+      @songs = collection
+    end
   end
 
   def show

@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  helper_method :impersonating?
+
+  def impersonating?
+    session[:impersonator_id].present?
+  end
   allow_browser versions: :modern
 
   include Pretender

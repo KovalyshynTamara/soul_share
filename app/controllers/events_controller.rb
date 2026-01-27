@@ -2,7 +2,17 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @events = collection
+    if params[:query].present?
+      search_results = EventIndex.query(multi_match: {
+        query: params[:query],
+        fields: %w[title description]
+      })
+
+      event_ids = search_results.map(&:id)
+      @events = Event.where(id: event_ids)
+    else
+      @events = collection
+    end
   end
 
   def show
