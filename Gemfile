@@ -8,11 +8,14 @@ gem "propshaft"
 gem "importmap-rails"
 gem "hotwire-rails"
 gem "pg"
+gem "dotenv-rails", groups: [ :development, :test ]
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
 gem "tailwindcss-rails", "~> 3.3.1"
+
+gem "devise"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
