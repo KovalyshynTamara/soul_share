@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:favorites) }
   it { is_expected.to have_many(:ratings) }
   it { is_expected.to have_many(:event_participants) }
+
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
 
