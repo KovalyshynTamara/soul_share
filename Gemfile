@@ -17,7 +17,7 @@ gem "chewy"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
-gem "tailwindcss-rails", "~> 3.3.1"
+gem "tailwindcss-rails", "~> 4.4.0"
 
 gem "devise"
 
